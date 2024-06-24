@@ -1,3 +1,5 @@
+import type { SproutAccountIntegrations } from "./Integrations";
+
 // Typescript voodoo 
 
 type NonFunctionPropertyNames<T> = { 
@@ -21,12 +23,6 @@ export enum AccountCreationErrors {
 export interface SproutAccountSettings {
 
     // Nothing yet...
-
-}
-
-export interface SproutAccountIntegrations {
-
-
 
 }
 
@@ -54,9 +50,9 @@ export interface SproutAccount {
 
     Settings: SproutAccountSettings;
 
-    // Intergrations
+    // Integrations
 
-    Intergrations: SproutAccountIntegrations;
+    Integrations: SproutAccountIntegrations;
 
     // Verification
 
@@ -98,7 +94,7 @@ export interface PublicSproutAccount extends Omit<NonFunctionProperties<SproutAc
  * 
 */
 
-export interface GenericSproutAccount extends Omit<NonFunctionProperties<SproutAccount>, 'Password' | 'Email' | 'Settings' | 'Intergrations' > {
+export interface GenericSproutAccount extends Omit<NonFunctionProperties<SproutAccount>, 'Password' | 'Email' | 'Settings' | 'Integrations' > {
 
     Generic: boolean;
 
@@ -137,7 +133,7 @@ export class SproutAccount implements SproutAccount {
 
         this.Flags = Init.Flags || [];
 
-        this.Intergrations = Init.Intergrations || {};
+        this.Integrations = Init.Integrations || {};
 
         this.Settings = Init.Settings || {};
 
@@ -160,7 +156,7 @@ export class SproutAccount implements SproutAccount {
 
         // MAKE REQUEST (replace Document)
 
-        return new SproutAccount(UID, Document as unknown as SproutAccount); 
+        return new SproutAccount(UID, Document as unknown as SproutAccount);
 
     }
 
@@ -212,7 +208,7 @@ export class SproutAccount implements SproutAccount {
             Username: this.Username,
             Email: this.Email,
 
-            Intergrations: this.Intergrations,
+            Integrations: this.Integrations,
 
             Flags: this.Flags,
 
