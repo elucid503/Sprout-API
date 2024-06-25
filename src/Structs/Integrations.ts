@@ -6,44 +6,36 @@ export interface SproutAccountIntegrations {
 
 }
 
-export class SproutAccountIntegrations implements SproutAccountIntegrations {
+export async function GetAccountIntegrations(AccountToken: string): Promise<SproutAccountIntegrations | null> {
 
-    constructor() {
+    const APIRoutes = await Routes.Fetch();
 
-    }
+    if (!APIRoutes) return null;
 
-    static async Fetch(AccountToken: string): Promise<SproutAccountIntegrations | null> {
+    const Response = await fetch(APIRoutes["AccountIntegrations"]?.URL, {
 
-        const APIRoutes = await Routes.Fetch();
+        method: APIRoutes["AccountIntegrations"]?.Method,
+        
+        headers: {
 
-        if (!APIRoutes) return null;
+            "Authorization": `Bearer ${AccountToken}`
 
-        const Response = await fetch(APIRoutes["AccountIntegrations"]?.URL, {
+        }
 
-            method: APIRoutes["AccountIntegrations"]?.Method,
-            
-            headers: {
+    }).catch((error) => {
 
-                "Authorization": `Bearer ${AccountToken}`
+        console.error("Sprout-Accounts: Failed to fetch account integrations", error);
+        return null;
 
-            }
+    });
 
-        }).catch((error) => {
+    const JSON = await Response?.json().catch((error) => {
 
-            console.error("Sprout-Accounts: Failed to fetch account integrations", error);
-            return null;
+        console.error("Sprout-Accounts: Failed to parse account integrations", error);
+        return null;
 
-        });
+    });
 
-        const JSON = await Response?.json().catch((error) => {
+    return JSON || null;
 
-            console.error("Sprout-Accounts: Failed to parse account integrations", error);
-            return null;
-
-        });
-
-        return JSON || null as SproutAccountIntegrations | null;
-
-    }
- 
 }

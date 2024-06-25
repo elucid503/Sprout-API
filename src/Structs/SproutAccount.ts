@@ -11,15 +11,6 @@ type NonFunctionPropertyNames<T> = {
 type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
 
 // Real types 
-
-export enum AccountCreationErrors {
-
-    InternalError = "InternalError",
-    AccountNotFound = "AccountNotFound",
-    InvalidPassword = "InvalidPassword"
-
-}
-
 export interface SproutAccountSettings {
 
     // Nothing yet...
