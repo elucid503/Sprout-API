@@ -1,44 +1,56 @@
 import { RouteList } from "./Constants.json";
 
-export interface Routes {
+interface FetchedRoutes {
+
+    FetchedData: SproutAPIRoutes | null,
+    LastFetched: number
+
+}
+
+const CachedRoutes: FetchedRoutes = {
+
+    FetchedData: null,
+    LastFetched: 0
+
+}
+
+export interface SproutAPIRoutes {
 
     [key: string]: {
 
         URL: string,
-        Method: "GET" | "POST" | "PUT" | "DELETE",
-        Authenticated: boolean,
-        ResponseType: "JSON" | "HTML" | "TEXT",
 
     };
 
 }
 
-export class Routes implements Routes {
+export async function FetchRoutes(): Promise<SproutAPIRoutes | null> {
 
-    constructor() {
+    if (CachedRoutes.FetchedData && Date.now() - CachedRoutes.LastFetched < 300_000_000) return CachedRoutes.FetchedData; 
+
+    const Response = await fetch(RouteList).catch((error) => {
+
+        console.error("Sprout-Accounts: Failed to fetch routes", error);
+        return null;
+
+    })
+
+    if (!Response) return null;
+
+    const JSON = await Response.json().catch((error) => {
+
+        console.error("Sprout-Accounts: Failed to parse routes", error);
+        return null;
+
+    });
+
+    if (JSON) {
+
+        CachedRoutes.FetchedData = JSON;
+        CachedRoutes.LastFetched = Date.now();
 
     }
 
-    static async Fetch(): Promise<Routes | null> {
-
-        const Response = await fetch(RouteList).catch((error) => {
-
-            console.error("Sprout-Accounts: Failed to fetch routes", error);
-            return null;
-
-        })
-
-        if (!Response) return null;
-
-        const JSON = await Response.json().catch((error) => {
-
-            console.error("Sprout-Accounts: Failed to parse routes", error);
-            return null;
-
-        });
-
-        return JSON || null as Routes | null;
-        
-    }
+    return JSON || null as SproutAPIRoutes | null;
     
 }

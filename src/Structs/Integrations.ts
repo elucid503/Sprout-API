@@ -1,4 +1,4 @@
-import { Routes } from "../Config/Routes";
+import { FetchRoutes } from "../Config/Routes";
 
 export interface SproutAccountIntegrations {
 
@@ -8,13 +8,13 @@ export interface SproutAccountIntegrations {
 
 export async function GetAccountIntegrations(AccountToken: string): Promise<SproutAccountIntegrations | null> {
 
-    const APIRoutes = await Routes.Fetch();
+    const APIRoutes = await FetchRoutes();
 
     if (!APIRoutes) return null;
 
     const Response = await fetch(APIRoutes["AccountIntegrations"]?.URL, {
 
-        method: APIRoutes["AccountIntegrations"]?.Method,
+        method: "GET",
         
         headers: {
 
