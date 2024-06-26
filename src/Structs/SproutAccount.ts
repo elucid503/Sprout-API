@@ -16,7 +16,7 @@ type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
 // Real types 
 export interface SproutAccountSettings {
 
-    // Nothing yet...
+    [key: string]: any;
 
 }
 
@@ -64,7 +64,6 @@ export interface SproutAccount {
         Salt: string;
 
     } | null;
-
 
 }
 
