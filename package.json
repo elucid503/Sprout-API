@@ -1,6 +1,7 @@
 {
-  "name": "sprout-accounts",
-  "module": "./src/",
+  "name": "sprout-api",
+  "version": "1.0.0",
+  "module": "./fdist/",
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"
