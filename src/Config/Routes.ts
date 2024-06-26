@@ -14,13 +14,22 @@ const CachedRoutes: FetchedRoutes = {
 
 }
 
+export interface SproutAPIRoute {
+
+    CommonName: string,
+    URL: string,
+
+    Method: "GET" | "POST" | "PATCH" | "DELETE",    
+    Description: string,
+
+    ResponseType: "JSON" | "HTML" | "FILE",
+    Authenticated: boolean
+
+};
+
 export interface SproutAPIRoutes {
 
-    [key: string]: {
-
-        URL: string,
-
-    };
+    [key: string]: SproutAPIRoute
 
 }
 

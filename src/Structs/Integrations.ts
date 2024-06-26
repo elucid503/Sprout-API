@@ -1,4 +1,5 @@
 import { FetchRoutes } from "../Config/Routes";
+import { MakeRequest } from "../Functions/Request";
 
 export interface SproutAccountIntegrations {
 
@@ -8,34 +9,31 @@ export interface SproutAccountIntegrations {
 
 export async function GetAccountIntegrations(AccountToken: string): Promise<SproutAccountIntegrations | null> {
 
-    const APIRoutes = await FetchRoutes();
+    const RouteList = await FetchRoutes();
+    const Route = (RouteList || {})["GetAccountIntegrations"];
 
-    if (!APIRoutes) return null;
+    const Response = await MakeRequest(Route, { "Authorization": `Bearer ${AccountToken}` }, {}, {});
 
-    const Response = await fetch(APIRoutes["AccountIntegrations"]?.URL, {
+    if (!Response || !Response?.Success) return null;
 
-        method: "GET",
-        
-        headers: {
+    return Response.Integrations || null;
+    
+}
 
-            "Authorization": `Bearer ${AccountToken}`
+export async function UpdateAccountIntegrations(ServiceName: string, NewIntegrationData: any, AccountToken: string): Promise<SproutAccountIntegrations | null> {
 
-        }
+    const RouteList = await FetchRoutes();
+    const Route = (RouteList || {})["UpdateAccountIntegrations"];
 
-    }).catch((error) => {
+    const Response = await MakeRequest(Route, { "Authorization": `Bearer ${AccountToken}` }, {}, {}, {
 
-        console.error("Sprout-Accounts: Failed to fetch account integrations", error);
-        return null;
-
-    });
-
-    const JSON = await Response?.json().catch((error) => {
-
-        console.error("Sprout-Accounts: Failed to parse account integrations", error);
-        return null;
+        Service: ServiceName,
+        Integrations: NewIntegrationData
 
     });
 
-    return JSON || null;
+    if (!Response || !Response?.Success) return null;
 
+    return Response.Integrations; // This route returns the updated integrations
+    
 }
