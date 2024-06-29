@@ -164,7 +164,7 @@ export class SproutAccount implements SproutAccount {
 
         if (!Response || !Response?.Account) {
             
-            console.error("Sprout-Accounts: Failed to fetch an account by ID");
+            console.error("Sprout-API: Failed to fetch an account by ID");
             return null;
 
         };
@@ -194,7 +194,7 @@ export class SproutAccount implements SproutAccount {
 
         if (!Response || !Response?.Account) {
 
-            console.error("Sprout-Accounts: Failed to fetch an account by token");
+            console.error("Sprout-API: Failed to fetch an account by token");
             return null;
 
         }
@@ -217,7 +217,7 @@ export class SproutAccount implements SproutAccount {
 
         if (!this.Token) {
             
-            console.error("Sprout-Accounts: Cannot delete account without token");
+            console.error("Sprout-API: Cannot delete account without token");
             return false;
 
         };
@@ -235,7 +235,7 @@ export class SproutAccount implements SproutAccount {
         
         if (!Response || !Response?.Success) {
 
-            console.error("Sprout-Accounts: Failed to delete an account");
+            console.error("Sprout-API: Failed to delete an account");
             return false;
 
         }
@@ -257,7 +257,7 @@ export class SproutAccount implements SproutAccount {
 
         if (!this.Token) {
 
-            console.error("Sprout-Accounts: Cannot get integrations without token");
+            console.error("Sprout-API: Cannot get integrations without token");
             return null;
 
         }
@@ -266,7 +266,7 @@ export class SproutAccount implements SproutAccount {
 
         if (!Integrations) {
 
-            console.error("Sprout-Accounts: Failed to get integrations");
+            console.error("Sprout-API: Failed to get integrations");
             return null;
 
         }
@@ -293,7 +293,7 @@ export class SproutAccount implements SproutAccount {
 
         if (!this.Token) {
 
-            console.error("Sprout-Accounts: Cannot update integrations without token");
+            console.error("Sprout-API: Cannot update integrations without token");
             return false;
 
         }
@@ -302,7 +302,7 @@ export class SproutAccount implements SproutAccount {
 
         if (!NewIntegrations) {
 
-            console.error("Sprout-Accounts: Failed to update integrations");
+            console.error("Sprout-API: Failed to update integrations");
             return false;
 
         }

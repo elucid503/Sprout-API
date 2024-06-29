@@ -39,7 +39,7 @@ export async function FetchRoutes(): Promise<SproutAPIRoutes | null> {
 
     const Response = await fetch(RouteList).catch((error) => {
 
-        console.error("Sprout-Accounts: Failed to fetch routes", error);
+        console.error("Sprout-API: Failed to fetch routes", error);
         return null;
 
     })
@@ -48,7 +48,7 @@ export async function FetchRoutes(): Promise<SproutAPIRoutes | null> {
 
     const JSON = await Response.json().catch((error) => {
 
-        console.error("Sprout-Accounts: Failed to parse routes", error);
+        console.error("Sprout-API: Failed to parse routes", error);
         return null;
 
     });

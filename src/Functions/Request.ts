@@ -4,7 +4,7 @@ export async function MakeRequest(Route: SproutAPIRoute, Headers: { [key: string
 
     if (Route.Authenticated && !Headers["Authorization"]) {
 
-        console.error(`Sprout-Accounts: Route ${Route.CommonName} requires authentication, but no token was provided`);
+        console.error(`Sprout-API: Route ${Route.CommonName} requires authentication, but no token was provided`);
         return null;
 
     };
