@@ -22,6 +22,10 @@ export async function MakeRequest(Route: SproutAPIRoute, Headers: { [key: string
 
     if (!Response?.ok) return null;
 
-    return await Response.json().catch(() => null);
+    const ResponseData = await Response.json().catch(() => null);
+
+    if (ResponseData?.Error) console.error(`Sprout-API: Route ${Route.CommonName} returned an error`, ResponseData.Error);
+
+    return !ResponseData || ResponseData?.Error ? null : ResponseData;
 
 }
