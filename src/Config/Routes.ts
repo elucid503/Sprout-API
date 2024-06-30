@@ -60,6 +60,6 @@ export async function FetchRoutes(): Promise<SproutAPIRoutes | null> {
 
     }
 
-    return JSON || null as SproutAPIRoutes | null;
+    return CachedRoutes.FetchedData || null as SproutAPIRoutes | null;
     
 }
