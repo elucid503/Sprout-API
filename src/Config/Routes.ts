@@ -55,7 +55,7 @@ export async function FetchRoutes(): Promise<SproutAPIRoutes | null> {
 
     if (JSON) {
 
-        CachedRoutes.FetchedData = JSON;
+        CachedRoutes.FetchedData = JSON.Data?.Routes;
         CachedRoutes.LastFetched = Date.now();
 
     }
