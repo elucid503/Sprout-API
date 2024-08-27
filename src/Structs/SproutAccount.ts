@@ -120,7 +120,7 @@ export type InitalSproutAccount = Partial<SproutAccount> & RequiredInitFields;
 
 export class SproutAccount implements SproutAccount {
 
-    private readonly Token?: string
+    readonly Token?: string
 
     constructor(UID: string, Init: Partial<SproutAccount> & RequiredInitFields, Token?: string) {
 

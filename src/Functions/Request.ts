@@ -9,6 +9,8 @@ export async function MakeRequest(Route: SproutAPIRoute, Headers: { [key: string
 
     };
 
+    Headers["Content-Type"] = "application/json";
+
     const QueryString = new URLSearchParams(QueryParams).toString();
     const NewURLWithPathParamsReplaced = Route.URL.replace(/:([a-zA-Z0-9]+)/g, (Match, Key) => PathParams[Key] || Match);
 
