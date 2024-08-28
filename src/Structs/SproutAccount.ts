@@ -127,7 +127,7 @@ export class SproutAccount implements SproutAccount {
         this.UID = UID;
 
         this.Username = Init.Username;
-        this.Email = Init.Email || null; // Not in generic  init fields 
+        this.Email = Init.Email || null; // Not in generic init fields 
 
         this.Flags = Init.Flags || [];
 
@@ -170,6 +170,36 @@ export class SproutAccount implements SproutAccount {
         };
 
         return new SproutAccount(UID, Response.Account as GenericSproutAccount);
+
+    }
+
+    /**
+     * FromUsername attempts to fetch a generic version of an account using its username
+     * Since the account will be generic, most information will be hidden unless an authenticated token for the account is provided
+     * 
+     * @param {string} Username The username of the account to load
+     * 
+     * @returns {SproutAccount | null} The account that was loaded, or null if the account was not found
+     * 
+    */
+    
+    static async FromUsername(Username: string): Promise<SproutAccount | null> {
+
+        const RouteList = await FetchRoutes();
+        const Route = (RouteList || {})["FetchAccountByUsername"];
+
+        if (!Route) return null;
+
+        const Response = await MakeRequest(Route, {}, {}, { username: Username });
+
+        if (!Response || !Response?.Account) {
+
+            console.error("Sprout-API: Failed to fetch an account by username");
+            return null;
+
+        }
+
+        return new SproutAccount(Response.Account.UID, Response.Account as GenericSproutAccount);
 
     }
 
