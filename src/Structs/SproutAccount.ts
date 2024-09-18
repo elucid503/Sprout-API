@@ -292,7 +292,7 @@ export class SproutAccount implements SproutAccount {
 
         }
 
-        const Integrations = GetAccountIntegrations(this.Token);
+        const Integrations = await GetAccountIntegrations(this.Token);
 
         if (!Integrations) {
 
