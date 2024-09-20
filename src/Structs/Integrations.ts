@@ -32,7 +32,7 @@ export async function UpdateAccountIntegrations(ServiceName: string, NewIntegrat
 
     });
 
-    if (!Response || !Response?.Success) return null;
+    if (!Response) return null;
 
     return Response.Integrations; // This route returns the updated integrations
     
