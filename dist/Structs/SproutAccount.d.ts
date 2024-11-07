@@ -14,6 +14,7 @@ export interface SproutAccount {
     UID: string;
     Username: string;
     Email: string | null;
+    Avatar?: string;
     Flags: SproutAccountFlags[];
     Settings: SproutAccountSettings;
     Integrations: SproutAccountIntegrations;

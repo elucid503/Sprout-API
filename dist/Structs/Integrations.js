@@ -15,7 +15,7 @@ export async function UpdateAccountIntegrations(ServiceName, NewIntegrationData,
         Service: ServiceName,
         Integrations: NewIntegrationData
     });
-    if (!Response || !Response?.Success)
+    if (!Response)
         return null;
     return Response.Integrations; // This route returns the updated integrations
 }

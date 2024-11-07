@@ -16,7 +16,8 @@ export class SproutAccount {
     constructor(UID, Init, Token) {
         this.UID = UID;
         this.Username = Init.Username;
-        this.Email = Init.Email || null; // Not in generic init fields 
+        this.Email = Init.Email || null; // Not in generic init fields
+        this.Avatar = Init.Avatar;
         this.Flags = Init.Flags || [];
         this.Integrations = Init.Integrations || {};
         this.Settings = Init.Settings || {};
