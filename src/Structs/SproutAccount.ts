@@ -36,6 +36,8 @@ export interface SproutAccount {
     Username: string;
     Email: string | null;  
 
+    Avatar?: string; // Introduced in Nov 2024
+
     // Flags
 
     Flags: SproutAccountFlags[];
@@ -127,7 +129,9 @@ export class SproutAccount implements SproutAccount {
         this.UID = UID;
 
         this.Username = Init.Username;
-        this.Email = Init.Email || null; // Not in generic init fields 
+        this.Email = Init.Email || null; // Not in generic init fields
+
+        this.Avatar = Init.Avatar;
 
         this.Flags = Init.Flags || [];
 
