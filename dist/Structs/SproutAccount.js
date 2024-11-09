@@ -173,6 +173,7 @@ export class SproutAccount {
             UID: this.UID,
             Username: this.Username,
             Email: this.Email,
+            Avatar: this.Avatar,
             Integrations: this.Integrations,
             Flags: this.Flags,
             Settings: this.Settings,
@@ -190,6 +191,7 @@ export class SproutAccount {
         return {
             UID: this.UID,
             Username: this.Username,
+            Avatar: this.Avatar,
             Flags: this.Flags,
             Verification: this.Verification,
             Generic: true

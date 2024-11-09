@@ -362,6 +362,8 @@ export class SproutAccount implements SproutAccount {
             Username: this.Username,
             Email: this.Email,
 
+            Avatar: this.Avatar,
+
             Integrations: this.Integrations,
 
             Flags: this.Flags,
@@ -390,6 +392,8 @@ export class SproutAccount implements SproutAccount {
             UID: this.UID,
 
             Username: this.Username,
+
+            Avatar: this.Avatar,
 
             Flags: this.Flags,
 
