@@ -1,5 +1,11 @@
 {
 
-    "RouteList": "https://sprout.software/API/Routes"
+    "RouteList": "https://sprout.software/API/Routes",
+    
+    "Microservices": {
+
+        "LoggingRelay": "https://relay.sprout.software"
+
+    }
 
 }
