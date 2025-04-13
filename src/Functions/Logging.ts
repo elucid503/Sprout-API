@@ -1,4 +1,4 @@
-import type { LogLevel } from "../Structs/Logging";
+import { LogLevel } from "../Structs/Logging";
 
 import Config from "../Config/Constants.json" with { type: "json" };
 
@@ -50,5 +50,29 @@ export async function Log(ServiceUID: string, Level: LogLevel, Title: string, Co
     }
 
     return true;
+    
+}
+
+export function GetLogLevelString(Level: LogLevel): string {
+
+    switch (Level) {
+
+        case LogLevel.Info:
+        
+            return "Info";
+        
+        case LogLevel.Warning:
+
+            return "Warning";
+        
+        case LogLevel.Error:
+
+            return "Error";
+        
+        default:
+
+            return "Debug";
+            
+    }   
     
 }
